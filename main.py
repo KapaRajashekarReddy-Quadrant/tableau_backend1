@@ -7,16 +7,14 @@ from flask_cors import CORS
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
 # ================== CONFIG ==================
-TABLEAU_SERVER = "https://prod-in-a.online.tableau.com"
-API_VERSION = "3.27"
-DOWNLOAD_DIR = "downloads"
+TABLEAU_SERVER = os.getenv("TABLEAU_SERVER")
+API_VERSION = os.getenv("API_VERSION")
+DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR")
 TIMEOUT = 30
 
 # -------- AZURE (BASELINE CONFIG) --------
-AZURE_CONNECTION_STRING = (
-    "DefaultEndpointsProtocol=https;AccountName=tablueatopowerbi;AccountKey=eFWeORWAr+WppTlE4iKjKostmcQybHoajyjdduHVu10rXza/o1S0AfP+Im6vnG/kDC1UOcRiJyoj+AStN92bog==;EndpointSuffix=core.windows.net"
-)
-AZURE_CONTAINER_NAME = "tabluea-raw"
+AZURE_CONNECTION_STRING = os.getenv("AZURE_CONNECTION_STRING")
+AZURE_CONTAINER_NAME = os.getenv("AZURE_CONTAINER_NAME")
 
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 TOKEN_STORE = {}
